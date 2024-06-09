@@ -3,7 +3,7 @@ $dbuser = "root";
 $dbpass = "";
 $host = "localhost";
 $db="Replacement";
-$mysqli = new mysqli($host,$dbuser,$dbpass,$db);
+$mysqli = new mysqli($host,$dbuser, $dbpass,$db);
 
 
 

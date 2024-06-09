@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../config.php'); // Update path to config.php
+include('../config.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -17,13 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $user['id'];
             header("Location: submit_request.php");
             exit();
-        } else if (!$user) {
+        } elseif (!$user) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $mysqli->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
             if ($stmt) {
                 $stmt->bind_param("ss", $email, $hashedPassword);
                 if ($stmt->execute()) {
-                    $_SESSION['user_id'] = $stmt->insert_id;
+                    $_SESSION['user_id'] = $mysqli->insert_id;
                     header("Location: submit_request.php");
                     exit();
                 } else {
@@ -44,10 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Student Login</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2>Student Login</h2>
     <form method="post" action="">
         Email: <input type="text" name="email" required><br>
         Password: <input type="password" name="password" required><br>
