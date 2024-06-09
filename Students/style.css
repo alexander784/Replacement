@@ -48,3 +48,41 @@ body {
     color: red;
     margin-top: 10px;
 }
+
+.dashboard-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.dashboard-container h2, .dashboard-container h3 {
+    color: #333;
+    text-align: center;
+}
+
+.dashboard-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-container input[type="text"],
+.dashboard-container textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.dashboard-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #041E42;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}

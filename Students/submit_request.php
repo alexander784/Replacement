@@ -34,15 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Student Dashboard</h2>
-    <h3>Submit ID Replacement Request</h3>
-    <form action="submit_request.php" method="post">
-        Name: <input type="text" name="name" required><br>
-        Student ID: <input type="text" name="student_id" required><br>
-        Lost Reason: <textarea name="lost_reason" required></textarea><br>
-        Faculty: <input type="text" name="faculty" required><br>
-        Place Lost: <input type="text" name="place_lost" required><br>
-        <button type="submit">Submit Request</button>
-    </form>
+    <div class="dashboard-container">
+        <!-- <h2>Student Dashboard</h2> -->
+        <h3>Submit ID Replacement Form</h3>
+        <form action="submit_request.php" method="post">
+            <input type="text" name="name" placeholder="Name" required><br>
+            <input type="text" name="student_id" placeholder="Student ID" required><br>
+            <textarea name="lost_reason" placeholder="Lost Reason" required></textarea><br>
+            <input type="text" name="faculty" placeholder="Faculty" required><br>
+            <input type="text" name="place_lost" placeholder="Place Lost" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
