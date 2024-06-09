@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php');
+include('../config.php');
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -9,26 +9,11 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-$stmt = $mysqli->prepare("SELECT * FROM id_requests WHERE user_id = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if (isset($_SESSION['success_message'])) {
-    echo "<p style='color: green;'>" . $_SESSION['success_message'] . "</p>";
-    unset($_SESSION['success_message']);
-}
+$result = $mysqli->query("SELECT * FROM id_requests WHERE user_id = $user_id");
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Dashboard</title>
-</head>
-<body>
-    <h2>Welcome to the Student Dashboard</h2>
-    
-    <h3>Your Submitted ID Replacement Requests</h3>
+
+    <h3>Your Submitted Requests</h3>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -53,11 +38,8 @@ if (isset($_SESSION['success_message'])) {
         </tr>
         <?php endwhile; ?>
     </table>
-
-    <br>
-    <a href="logout.php">Logout</a>
 </body>
 </html>
 <?php
-$stmt->close();
+$result->free();
 ?>

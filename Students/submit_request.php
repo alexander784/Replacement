@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php');
+include('../config.php');
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: student_dashboard.php");
         exit();
     } else {
-        // SQL error
         echo "Error: " . $mysqli->error;
     }
 }
@@ -34,10 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Submit ID Replacement</title>
+    <title>Student Dashboard</title>
 </head>
 <body>
-    <h2>Submit ID Replacement Request</h2>
+    <h2>Student Dashboard</h2>
+    <h3>Submit ID Replacement Request</h3>
     <form action="submit_request.php" method="post">
         Name: <input type="text" name="name" required><br>
         Student ID: <input type="text" name="student_id" required><br>
@@ -46,6 +46,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Place Lost: <input type="text" name="place_lost" required><br>
         <button type="submit">Submit Request</button>
     </form>
-</body>
-</html>
-
