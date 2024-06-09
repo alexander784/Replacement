@@ -45,14 +45,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Student Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Student Login</h2>
-    <form method="post" action="">
-        Email: <input type="text" name="email" required><br>
-        Password: <input type="password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
-    <?php if (isset($error)) echo "<p>$error</p>"; ?>
+    <div class="login-container">
+
+        <h2>Student Login</h2>
+        <form method="post" action="">
+            <input type="text" name="email" placeholder="Email" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+        <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
+    </div>
 </body>
+
 </html>
