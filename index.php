@@ -3,12 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Student ID Replacement</title>
-
+    <link rel="stylesheet" href="style.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
     <!-- Styles -->
     <style>
         html,
@@ -20,35 +18,28 @@
             height: 100vh;
             margin: 0;
         }
-
         .full-height {
             height: 100vh;
         }
-
         .flex-center {
             align-items: center;
             display: flex;
             justify-content: center;
         }
-
         .position-ref {
             position: relative;
         }
-
         .top-right {
             position: absolute;
             right: 10px;
             top: 18px;
         }
-
         .content {
             text-align: center;
         }
-
         .title {
             font-size: 84px;
         }
-
         .links > a {
             color: #636b6f;
             padding: 0 25px;
@@ -58,7 +49,6 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-
         .m-b-md {
             margin-bottom: 30px;
         }
@@ -83,5 +73,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="column">
+                <div class="services1">
+                    Easier and faster 
+                </div>
+            </div>
+            <div class="column">
+                <div class="services2">
+                    Secure way 
+                </div>
+            </div>
+            <div class="column">
+                <div class="services3">
+                    Convenient
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
