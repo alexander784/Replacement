@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +49,7 @@
             font-size: 84px;
         }
 
-        .links>a {
+        .links > a {
             color: #636b6f;
             padding: 0 25px;
             font-size: 13px;
@@ -67,16 +67,19 @@
 <body>
     <?php include 'partials/_topnav.php'; ?>
     
-
     <div class="flex-center position-ref full-height">
         <div class="content">
-            <div class="title m-b-md">
+            <div class="title m-b-md move-up">
                 Student ID Replacement 
             </div>
+            <div class="home">
+                <p>Replace Your lost or Damaged ID hassle free !!</p>
+            </div>
+            <br>
 
             <div class="links">
-                <a href="Restro/admin/dashboard.php">Admin Log In</a>
-                <a href="Restro/customer">Customer Log In</a>
+                <a href="Admin/login.php">Admin Log In</a>
+                <a href="Students/login.php">Student Log In</a>
             </div>
         </div>
     </div>
