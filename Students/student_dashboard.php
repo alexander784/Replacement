@@ -58,7 +58,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <td><?php echo htmlspecialchars($row['place_lost']); ?></td>
         <td><?php echo htmlspecialchars($row['status']); ?></td>
         <td><?php echo htmlspecialchars($row['request_date']); ?></td>
-       
+        <td>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                <input type="text" name="name" value="<?php echo $row['name']; ?>">
+                <input type="text" name="student_id" value="<?php echo $row['student_id']; ?>">
+                <input type="text" name="lost_reason" value="<?php echo $row['lost_reason']; ?>">
+                <input type="text" name="faculty" value="<?php echo $row['faculty']; ?>">
+                <input type="text" name="place_lost" value="<?php echo $row['place_lost']; ?>">
+                <button type="submit">Update</button>
+            </form>
+        </td>
     </tr>
     <?php endwhile; ?>
 </table>
