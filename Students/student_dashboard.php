@@ -13,7 +13,7 @@ $result = $mysqli->query("SELECT * FROM id_requests WHERE user_id = $user_id");
 
 ?>
 
-    <h3>Your Submitted Requests</h3>
+    <h3>Your Submitted Info</h3>
     <table border="1">
         <tr>
             <th>ID</th>

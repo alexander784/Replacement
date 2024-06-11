@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             unset($_SESSION['success_message']);
         }
         ?>
-        <!-- <h2>Student Dashboard</h2> -->
         <h3>Submit ID Replacement Form</h3>
         <form action="submit_request.php" method="post">
             <input type="text" name="name" placeholder="Name" required><br>
@@ -56,6 +55,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="place_lost" placeholder="Place Lost" required><br>
             <button type="submit">Submit</button>
         </form>
+
+        <br>
+        <a href="student_dashboard.php" class="view-details-button">View my Info</a>
     </div>
 </body>
 </html>
+
