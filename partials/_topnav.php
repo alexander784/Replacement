@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <title>Navbar Example</title>
+    <title>NavBar</title>
     <style>
         #navbar-main {
             background-color: #041E42;
@@ -19,6 +19,11 @@
              <div class="mx-auto text-center text-white">
                 Student ID Replacement 
               </div>
+
+              <div class="text-white">
+                <a href="Admin/login.php">Admin Log In</a>
+                <a href="Students/login.php">Student Log In</a>
+            </div>
         </div>
     </nav>
 </body>

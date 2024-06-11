@@ -54,3 +54,23 @@ body {
     font-size: 1em;
     color: #666;
 }
+
+.content-box {
+    width: 100vh; 
+    height: 30vh; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    padding: 50px; 
+    margin: 50px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    text-align: center;
+}
+
+
+
+
+
+

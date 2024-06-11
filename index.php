@@ -58,17 +58,15 @@
     <?php include 'partials/_topnav.php'; ?>
 
     <img src="./assets/slider.jpg" alt="slider"/>
-    <div class="flex-center position-ref full-height">
-        <div class="content">
-            <div class="home">
-                <p>Replace Your lost or Damaged ID hassle free !!</p>
-            </div>
-            <br>
-            <div class="links">
-                <a href="Admin/login.php">Admin Log In</a>
-                <a href="Students/login.php">Student Log In</a>
-            </div>
+    <div class="flex-center position-ref half-height">
+    <div class="content-box">
+    <div class="content">
+        <div class="">
+            <p>Replace Your lost or Damaged ID hassle free !!</p>
         </div>
+    </div>
+</div>
+
     </div>
 
     <section class="services">
@@ -77,6 +75,7 @@
             <div class="column">
                 <div class="service-box">
                     <h3 class="service-title">Easier and Faster</h3>
+                    <i class="fa-solid fa-phone"></i>
                     <p>Our method is designed to streamline processes, saving you time and effort.</p>
                 </div>
             </div>
