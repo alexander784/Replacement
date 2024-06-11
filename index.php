@@ -74,25 +74,29 @@
         </div>
     </div>
 
-    <!-- Services Section -->
     <section class="services">
+        <h2 class="para">Why this method</h2>
         <div class="container">
             <div class="column">
-                <div class="services1">
-                    Easier and faster 
+                <div class="service-box">
+                    <h3 class="service-title">Easier and Faster</h3>
+                    <p>Our method is designed to streamline processes, saving you time and effort.</p>
                 </div>
             </div>
             <div class="column">
-                <div class="services2">
-                    Secure way 
+                <div class="service-box">
+                    <h3 class="service-title">Secure Way</h3>
+                    <p>Security is our top priority, ensuring your data is protected at all times.</p>
                 </div>
             </div>
             <div class="column">
-                <div class="services3">
-                    Convenient
+                <div class="service-box">
+                    <h3 class="service-title">Convenient</h3>
+                    <p>Experience the convenience of our user-friendly and accessible platform.</p>
                 </div>
             </div>
         </div>
     </section>
+    <?php include 'partials/_footer.php'; ?>
 </body>
 </html>
