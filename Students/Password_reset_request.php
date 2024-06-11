@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("ss", $token, $email);
             $stmt->execute();
 
-            $reset_link = "http://yourdomain.com/reset_password.php?token=$token";
+            $reset_link = "http://localhost/Students/reset_password.php?token=$token";
             mail($email, "Password Reset", "Click this link to reset your password: $reset_link");
 
             $message = "Password reset link has been sent to your email.";

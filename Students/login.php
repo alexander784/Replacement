@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Password" required><br>
             <button type="submit">Login</button>
         </form>
+        <p>Forgot your password? <a href="reset_password.php" >Reset password</a></p>
         <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
     </div>
 </body>

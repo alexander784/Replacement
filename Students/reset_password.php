@@ -6,23 +6,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $token = $_POST['token'];
     $new_password = $_POST['new_password'];
 
-    $stmt = $mysqli->prepare("SELECT * FROM users WHERE reset_token = ?");
+    $stmt = $mysqli->prepare("SELECT user_id FROM reset_tokens WHERE token = ? AND NOW() <= DATE_ADD(created_at, INTERVAL 1 DAY)");
     if ($stmt) {
         $stmt->bind_param("s", $token);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
+        $stmt->store_result();
 
-        if ($user) {
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($user_id);
+            $stmt->fetch();
+
             $hashedPassword = password_hash($new_password, PASSWORD_DEFAULT);
-            $stmt = $mysqli->prepare("UPDATE users SET password = ?, reset_token = NULL WHERE reset_token = ?");
-            $stmt->bind_param("ss", $hashedPassword, $token);
-            $stmt->execute();
-
-            $message = "Password has been reset successfully.";
+            $updateStmt = $mysqli->prepare("UPDATE users SET password = ?, reset_token = NULL WHERE id = ?");
+            if ($updateStmt) {
+                $updateStmt->bind_param("si", $hashedPassword, $user_id);
+                if ($updateStmt->execute()) {
+                    $message = "Password has been reset successfully.";
+                    $deleteStmt = $mysqli->prepare("DELETE FROM reset_tokens WHERE token = ?");
+                    if ($deleteStmt) {
+                        $deleteStmt->bind_param("s", $token);
+                        $deleteStmt->execute();
+                    } else {
+                        $error = "Failed to delete reset token.";
+                    }
+                } else {
+                    $error = "Failed to reset password.";
+                }
+            } else {
+                $error = "Prepare failed: " . htmlspecialchars($mysqli->error);
+            }
         } else {
-            $error = "Invalid token.";
+            $error = "Invalid or expired token.";
         }
+        $stmt->close();
     } else {
         $error = "Prepare failed: " . htmlspecialchars($mysqli->error);
     }
