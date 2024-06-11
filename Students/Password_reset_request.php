@@ -13,13 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         if ($user) {
-            // Generate a unique token
             $token = bin2hex(random_bytes(50));
             $stmt = $mysqli->prepare("UPDATE users SET reset_token = ? WHERE email = ?");
             $stmt->bind_param("ss", $token, $email);
             $stmt->execute();
 
-            // Send password reset link via email
             $reset_link = "http://yourdomain.com/reset_password.php?token=$token";
             mail($email, "Password Reset", "Click this link to reset your password: $reset_link");
 
