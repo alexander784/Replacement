@@ -9,14 +9,14 @@ body {
 
 .services {
     padding: 60px 20px;
-    background-color: #fff;
+    background-color: #041E42;
     text-align: center;
 }
 
 .para {
     font-size: 2em;
     margin-bottom: 20px;
-    color: white;
+    color: #000;
 }
 
 .container {

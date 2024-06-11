@@ -59,9 +59,7 @@
     
     <div class="flex-center position-ref full-height">
         <div class="content">
-            <div class="title m-b-md move-up">
-                Student ID Replacement 
-            </div>
+            
             <div class="home">
                 <p>Replace Your lost or Damaged ID hassle free !!</p>
             </div>

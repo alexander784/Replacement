@@ -49,14 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="login-container">
-
         <h2>Student Login</h2>
         <form method="post" action="">
             <input type="text" name="email" placeholder="Email" required><br>
             <input type="password" name="password" placeholder="Password" required><br>
             <button type="submit">Login</button>
         </form>
-        <p>Forgot your password? <a href="reset_password.php" >Reset password</a></p>
+        <p>Forgot your password? <a href="reset_password.php"><i class="fa fa-user" aria-hidden="true"></i> Reset password</a></p>
         <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
     </div>
 </body>
