@@ -21,8 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("isssss", $user_id, $name, $student_id, $lost_reason, $faculty, $place_lost);
         $stmt->execute();
         $stmt->close();
-        
-        header("Location: student_dashboard.php");
+        $_SESSION['success_message'] = "Details successfully submitted!!";
+        header("Location:submit_request.php");
+        // header("Location: student_dashboard.php");
         exit();
     } else {
         echo "Error: " . $mysqli->error;
@@ -38,6 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="dashboard-container">
+        <?php
+        session_start();
+        if(isset($_SESSION['success_message'])) {
+            echo "<div class='success-message'>" . $_SESSION['success_message']. "</div>";
+            unset($_SESSION['success_message']);
+        }
+        ?>
         <!-- <h2>Student Dashboard</h2> -->
         <h3>Submit ID Replacement Form</h3>
         <form action="submit_request.php" method="post">
