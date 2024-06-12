@@ -36,8 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <h3>Your Submitted Info</h3>
+<!-- <link rel="stylesheet" href="style.css"> -->
 <h1><?php echo $_SESSION['username']; ?></h1>
-<a href="logout.php">Logout</a>
+<a href="logout.php" class="logout-button">Logout</a>
 <table border="1">
     <tr>
         <th>ID</th>
