@@ -49,6 +49,7 @@ $result = $mysqli->query($sql);
         <?php endif; ?>
 
         <br>
+        <a href="logout.php" class="logout-button">Logout</a>
     </div>
 </body>
 </html>
