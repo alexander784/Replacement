@@ -56,8 +56,10 @@
 </head>
 <body>
     <?php include 'partials/_topnav.php'; ?>
+    <div class="image-container">
+        <img src="./assets/slider.jpg" alt="slider" class="responsive-image"/>
+    </div>
 
-    <img src="./assets/slider.jpg" alt="slider"/>
     <div class="flex-center position-ref half-height">
     <div class="content-box">
     <div class="content">

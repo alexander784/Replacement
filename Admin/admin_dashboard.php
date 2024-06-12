@@ -10,6 +10,19 @@ if (!isset($_SESSION['user_id'])) {
 $sql = "SELECT * FROM id_requests";
 $result = $mysqli->query($sql);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['approve'])) {
+        $id = $_POST['id'];
+        $update_sql = "UPDATE id_requests SET status = 'Approved' WHERE id = $id";
+        $mysqli->query($update_sql);
+    } elseif (isset($_POST['reject'])) {
+        $id = $_POST['id'];
+        $update_sql = "UPDATE id_requests SET status = 'Rejected' WHERE id = $id";
+        $mysqli->query($update_sql);
+    }
+    header("Location: admin_dashboard.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +43,7 @@ $result = $mysqli->query($sql);
                         <th>Lost Reason</th>
                         <th>Faculty</th>
                         <th>Place Lost</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +54,13 @@ $result = $mysqli->query($sql);
                             <td><?php echo $row['lost_reason']; ?></td>
                             <td><?php echo $row['faculty']; ?></td>
                             <td><?php echo $row['place_lost']; ?></td>
+                            <td>
+                                <form method="post" action="">
+                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                    <button type="submit" name="approve">Approve</button>
+                                    <button type="submit" name="reject">Reject</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -52,6 +73,5 @@ $result = $mysqli->query($sql);
     </div>
 
     <a href="logout.php" class="logout-button">Logout</a>
-
 </body>
 </html>
