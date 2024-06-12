@@ -16,7 +16,7 @@ $result = $mysqli->query($sql);
 <html>
 <head>
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -49,7 +49,9 @@ $result = $mysqli->query($sql);
         <?php endif; ?>
 
         <br>
-        <a href="logout.php" class="logout-button">Logout</a>
     </div>
+
+    <a href="logout.php" class="logout-button">Logout</a>
+
 </body>
 </html>

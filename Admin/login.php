@@ -2,16 +2,11 @@
 session_start();
 include('../config.php');
 
-// Enable error reporting for debugging
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Check if the user already exists
     $stmt = $mysqli->prepare("SELECT * FROM admins WHERE username = ?");
     if ($stmt) {
         $stmt->bind_param("s", $username);
@@ -20,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
 
         if ($user) {
-            // Verify the password
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
@@ -30,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $error = "Invalid username or password.";
             }
         } else {
-            // User doesn't exist, insert new user
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $mysqli->prepare("INSERT INTO admins (username, password) VALUES (?, ?)");
             if ($stmt) {
