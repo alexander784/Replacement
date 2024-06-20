@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student ID Replacement</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <!-- Styles -->
@@ -55,44 +56,39 @@
     </style>
 </head>
 <body>
-    <?php include 'partials/_topnav.php'; ?>
+    <?php include './partials/_topnav.php'; ?>
     <div class="image-container">
         <img src="./assets/slider.jpg" alt="slider" class="responsive-image"/>
     </div>
-
-    <div class="flex-center position-ref half-height">
-    <div class="content-box">
-    <div class="content">
-        <div class="">
-            <p>Replace Your lost or Damaged ID hassle free !!</p>
-        </div>
-    </div>
-</div>
-
-    </div>
-
+      <!-- <div class="replace">
+        <p>Student ID Replacement</p>
+    </div> -->
+    <h1 class="text-4xl font-3 mb-6 text-center">Zetech University Student ID Replacement</h1>
     <section class="services">
-        <h2 class="para">Why this method</h2>
         <div class="container">
             <div class="column">
                 <div class="service-box">
-                    <h3 class="service-title">Easier and Faster</h3>
-                    <i class="fa-solid fa-phone"></i>
-                    <p>Our method is designed to streamline processes, saving you time and effort.</p>
+                    <h3 class="service-title">#Step 1</h3>
+                    <p>Initiate Request</p>
                 </div>
             </div>
             <div class="column">
                 <div class="service-box">
-                    <h3 class="service-title">Secure Way</h3>
-                    <p>Security is our top priority, ensuring your data is protected at all times.</p>
+                    <h3 class="service-title">#Step2</h3>
+                    <p>Fill in Your Details</p>
+                    <p><a href="Students/login.php">Login</a></p>
+                    <!-- <a href="submit_request.php"></a> -->
                 </div>
             </div>
+
             <div class="column">
                 <div class="service-box">
-                    <h3 class="service-title">Convenient</h3>
-                    <p>Experience the convenience of our user-friendly and accessible platform.</p>
+                    <h3 class="service-title">#Step3</h3>
+                    <p>Make Necessary Payments</p>
+                    <p>Replacement: 500/= </p>
                 </div>
             </div>
+            
         </div>
     </section>
     <?php include 'partials/_footer.php'; ?>

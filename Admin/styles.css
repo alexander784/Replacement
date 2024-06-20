@@ -1,3 +1,54 @@
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #041E42;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-container p {
+    margin-top: 20px;
+}
+.login-container p a {
+    color: #041E42;
+    text-decoration: none;
+}
+.login-container p a:hover {
+    text-decoration: underline;
+}
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+
+
+
 .logout-button {
     position: fixed;
     top: 10px;
@@ -34,4 +85,54 @@ table tr:hover {
 
 .dashboard-container {
     margin-bottom: 20px; 
+}
+
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-container button:hover {
+    background-color: #0056b3;
+}
+.login-container p {
+    margin-top: 20px;
+}
+.login-container p a {
+    color: #007BFF;
+    text-decoration: none;
+}
+.login-container p a:hover {
+    text-decoration: underline;
+}
+.error {
+    color: red;
+    font-size: 14px;
 }

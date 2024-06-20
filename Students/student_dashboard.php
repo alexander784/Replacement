@@ -8,73 +8,174 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-
-$result = $mysqli->query("SELECT * FROM id_requests WHERE user_id = $user_id");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $student_id = $_POST['student_id'];
-    $lost_reason = $_POST['lost_reason'];
-    $faculty = $_POST['faculty'];
-    $place_lost = $_POST['place_lost'];
-
-    $update_stmt = $mysqli->prepare("UPDATE id_requests SET name = ?, student_id = ?, lost_reason = ?, faculty = ?, place_lost = ? WHERE id = ?");
-    if ($update_stmt) {
-        $update_stmt->bind_param("sssssi", $name, $student_id, $lost_reason, $faculty, $place_lost, $id);
-        if ($update_stmt->execute()) {
-            header("Location: $_SERVER[PHP_SELF]");
-            exit();
-        } else {
-            $error = "Failed to update information.";
-        }
-    } else {
-        $error = "Prepare failed: " . htmlspecialchars($mysqli->error);
-    }
-}
-
+$sql = "SELECT * FROM id_requests WHERE user_id = $user_id";
+$result = $mysqli->query($sql);
 ?>
 
-<h3>Your Submitted Info</h3>
-<!-- <link rel="stylesheet" href="style.css"> -->
-<h1><?php echo $_SESSION['username']; ?></h1>
-<a href="logout.php" class="logout-button">Logout</a>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Student ID</th>
-        <th>Lost Reason</th>
-        <th>Faculty</th>
-        <th>Place Lost</th>
-        <th>Status</th>
-        <th>Request Date</th>
-        <th>Edit</th>
-    </tr>
-    <?php while ($row = $result->fetch_assoc()): ?>
-    <tr>
-        <td><?php echo htmlspecialchars($row['id']); ?></td>
-        <td><?php echo htmlspecialchars($row['name']); ?></td>
-        <td><?php echo htmlspecialchars($row['student_id']); ?></td>
-        <td><?php echo htmlspecialchars($row['lost_reason']); ?></td>
-        <td><?php echo htmlspecialchars($row['faculty']); ?></td>
-        <td><?php echo htmlspecialchars($row['place_lost']); ?></td>
-        <td><?php echo htmlspecialchars($row['status']); ?></td>
-        <td><?php echo htmlspecialchars($row['request_date']); ?></td>
-        <td>
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                <input type="text" name="name" value="<?php echo $row['name']; ?>">
-                <input type="text" name="student_id" value="<?php echo $row['student_id']; ?>">
-                <input type="text" name="lost_reason" value="<?php echo $row['lost_reason']; ?>">
-                <input type="text" name="faculty" value="<?php echo $row['faculty']; ?>">
-                <input type="text" name="place_lost" value="<?php echo $row['place_lost']; ?>">
-                <button type="submit">Update</button>
-            </form>
-        </td>
-    </tr>
-    <?php endwhile; ?>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Submitted Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .topnav {
+            background-color: #041E42;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logout-button {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            background-color: #333;
+            border-radius: 4px;
+        }
+
+        .logout-button:hover {
+            background-color: #555;
+        }
+
+        .flex {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding: 25px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .main-content {
+            flex: 1;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #041E42;
+            color: white;
+        }
+
+        table tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+        }
+
+        form input[type="text"], form button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #041E42;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <?php include '../partials/_topnav.php'; ?>
+
+        <div class="flex">
+            <div class="sidebar">
+                <?php include '../partials/_sidebar.php'; ?>
+                <a href="logout.php" class="logout-button">Logout</a>
+            </div>
+            <div class="main-content">
+                <h3>Your Submitted Info</h3>
+                <?php if ($result && $result->num_rows > 0) : ?>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Student ID</th>
+                                <th>Lost Reason</th>
+                                <th>Faculty</th>
+                                <th>Place Lost</th>
+                                <th>Status</th>
+                                <th>Request Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $result->fetch_assoc()) : ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['id']); ?></td>
+                                <td><?php echo htmlspecialchars($row['name']); ?></td>
+                                <td><?php echo htmlspecialchars($row['student_id']); ?></td>
+                                <td><?php echo htmlspecialchars($row['lost_reason']); ?></td>
+                                <td><?php echo htmlspecialchars($row['faculty']); ?></td>
+                                <td><?php echo htmlspecialchars($row['place_lost']); ?></td>
+                                <td><?php echo htmlspecialchars($row['status']); ?></td>
+                                <td><?php echo htmlspecialchars($row['request_date']); ?></td>
+                            </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                <?php else : ?>
+                    <p>No ID replacement requests found.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
 <?php
 $result->free();

@@ -15,14 +15,21 @@
 <body>
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
         <div class="container-fluid f-flex justify-content-between align-items-center">
-            <img src="./assets/logo.png" alt="Dashboard Logo" style="height: 30px; margin-right: 10px;">
-             <div class="mx-auto text-center text-white">
+            <a href="../index.php">
+            <img src="../assets/Zetech.png" alt="Dashboard Logo" style="height: 30px; margin-right: 10px;">
+            </a>
+            <div class="mx-auto text-center text-white">
                 Student ID Replacement 
-              </div>
+            </div>
 
-              <div class="text-white">
-                <a href="Admin/login.php">Admin Log In</a>
-                <a href="Students/login.php">Student Log In</a>
+            <div class="text-white">
+                <?php
+                session_start();
+                
+                if (!isset($_SESSION['student_email'])) {
+                    echo '<a href="Admin/login.php">Admin Log In</a>';
+                }
+                ?>
             </div>
         </div>
     </nav>

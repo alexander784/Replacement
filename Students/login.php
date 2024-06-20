@@ -5,9 +5,9 @@ include('../config.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $emailDomain = '@zetech.com';
+    $emailDomain = 'student@zetech.com';
 
-    // Email Must end with @zetech.com
+    // Email Must end with @student.zetech.com
     if (!str_ends_with($email, $emailDomain)) {
         $error = "Invalid password or email";
     } else {
@@ -19,8 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
 
             if ($user && password_verify($password, $user['password'])) {
+
                 $_SESSION['user_id'] = $user['id'];
-                header("Location: submit_request.php");
+                header("Location: dashboard.php");
+                
                 exit();
             } elseif (!$user) {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -29,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_param("ss", $email, $hashedPassword);
                     if ($stmt->execute()) {
                         $_SESSION['user_id'] = $mysqli->insert_id;
-                        header("Location: submit_request.php");
+                        header("Location: dashboard.php");
                         exit();
                     } else {
                         $error = "Failed to create new user.";
@@ -54,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<?php include './partials/_topnav.php'; ?>
     <div class="login-container">
         <h2>Student Login</h2>
         <form method="post" action="">
@@ -61,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Password" required><br>
             <button type="submit">Login</button>
         </form>
-        <p>Forgot your password? <a href="send-password-reset.php"><i class="fa fa-user" aria-hidden="true"></i> Reset password</a></p>
+        <p>Forgot your password? <a href="send-password-reset.php"></i> Reset password</a></p>
         <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
     </div>
 </body>

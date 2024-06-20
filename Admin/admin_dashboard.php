@@ -2,7 +2,7 @@
 session_start();
 include('../config.php');
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id'])) { // Assuming you have a separate session for admin
     header("Location: login.php");
     exit();
 }
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<?php include 'partials/_topnav.php'; ?>
     <div class="dashboard-container">
         <h3>ID Replacement Requests</h3>
         <?php if ($result && $result->num_rows > 0) : ?>
@@ -43,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Lost Reason</th>
                         <th>Faculty</th>
                         <th>Place Lost</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -54,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <td><?php echo $row['lost_reason']; ?></td>
                             <td><?php echo $row['faculty']; ?></td>
                             <td><?php echo $row['place_lost']; ?></td>
+                            <td><?php echo $row['status']; ?></td>
                             <td>
                                 <form method="post" action="">
                                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
@@ -68,10 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php else : ?>
             <p>No ID replacement requests found.</p>
         <?php endif; ?>
-
         <br>
     </div>
 
     <a href="logout.php" class="logout-button">Logout</a>
+    <?php include 'partials/_footer.php'; ?>
 </body>
 </html>
