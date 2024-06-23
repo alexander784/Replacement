@@ -2,7 +2,7 @@
 session_start();
 include('../config.php');
 
-if (!isset($_SESSION['user_id'])) { // Assuming you have a separate session for admin
+if (!isset($_SESSION['user_id'])) { 
     header("Location: login.php");
     exit();
 }

@@ -36,12 +36,11 @@ if (!isset($_SESSION['user_id'])) {
     <div class="flex h-screen">
         <div class="bg-gray-800 w-64">
             <?php include '../partials/_sidebar.php'; ?>
-            <a href="logout.php" class="logout-button">Logout</a>
+            <!-- <a href="logout.php" class="logout-button">Logout</a> -->
         </div>
         <div class="flex-1 bg-gray-200">
             <div class="p-6">
                 <div id="main_content">
-                    <!-- Default content will be loaded here -->
                     Welcome to Student ID Replacement!!
                 </div>
             </div>

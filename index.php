@@ -69,14 +69,14 @@
             <div class="column">
                 <div class="service-box">
                     <h3 class="service-title">#Step 1</h3>
-                    <p>Initiate Request</p>
+                    <p>Visit the Replacement Website</p>
                 </div>
             </div>
             <div class="column">
                 <div class="service-box">
                     <h3 class="service-title">#Step2</h3>
                     <p>Fill in Your Details</p>
-                    <p><a href="Students/login.php">Login</a></p>
+                    <p><a href="./login.php">Login</a></p>
                     <!-- <a href="submit_request.php"></a> -->
                 </div>
             </div>

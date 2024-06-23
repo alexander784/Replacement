@@ -37,14 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($user) {
             $token = bin2hex(random_bytes(16));
-            $expires = date("U") + 1800; // Token expires in 30 minutes
+            $expires = date("U") + 1800;
 
             $stmt = $mysqli->prepare("INSERT INTO password_resets (email, token, expires) VALUES (?, ?, ?)");
             if ($stmt) {
                 $stmt->bind_param("ssi", $email, $token, $expires);
                 $stmt->execute();
 
-                // Send email
                 $resetLink = "http://yourdomain.com/create_new_password.php?token=" . $token;
                 $subject = "Password Reset Request";
                 $message = "Click the link to reset your password: " . $resetLink;

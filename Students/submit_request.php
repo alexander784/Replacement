@@ -1,34 +1,50 @@
 <?php
 session_start();
 include('../config.php');
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
+
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $student_id = $_POST['student_id'];
+    $name = $_SESSION['name'] ?? ''; 
+    $student_id = $_SESSION['student_id'] ?? '';
+    $faculty = $_SESSION['faculty'] ?? ''; 
+
     $lost_reason = $_POST['lost_reason'];
-    $faculty = $_POST['faculty'];
     $place_lost = $_POST['place_lost'];
     $user_id = $_SESSION['user_id'];
 
     $stmt = $mysqli->prepare("INSERT INTO id_requests (user_id, name, student_id, lost_reason, faculty, place_lost) VALUES (?, ?, ?, ?, ?, ?)");
     
+
+
     if ($stmt) {
         $stmt->bind_param("isssss", $user_id, $name, $student_id, $lost_reason, $faculty, $place_lost);
-        $stmt->execute();
-        $stmt->close();
-        $_SESSION['success_message'] = "Details successfully submitted!";
-        header("Location: submit_request.php");
-        exit();
+        
+        if ($stmt->execute()) {
+
+
+            $_SESSION['success_message'] = "Details successfully submitted!";
+
+            header("Location: submit_request.php");
+            exit();
+            
+        } else {
+            $error = "Error: " . $mysqli->error;
+        }
     } else {
-        echo "Error: " . $mysqli->error;
+        $error = "Prepare failed: " . $mysqli->error;
     }
 }
+
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -45,60 +61,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             height: 100vh;
         }
 
-        .topnav {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
         .container {
             display: flex;
             flex: 1;
             margin-top: 50px;
         }
 
-        .sidebar {
-            width: 250px;
-            background-color: #333;
-            color: #fff;
-            padding: 15px;
-            height: calc(100vh - 50px);
-            position: fixed;
-            top: 50px;
-            left: 0;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin: 15px 0;
-        }
-
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-        }
-
-        .sidebar ul li a:hover {
-            background-color: #575757;
-            padding-left: 10px;
-        }
-
         .main-content {
-            margin-left: 250px;
-            width: calc(100% - 250px);
-            padding: 20px;
+            margin-left: 200px;
+            width: 100vh;
             box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            padding-bottom: 100px;
         }
 
         .dashboard-container {
@@ -126,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            width: 100%;
+            width: 50vh;
             box-sizing: border-box;
         }
 
@@ -158,16 +133,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 4px;
             margin-top: 15px;
         }
-
-        .view-details-button:hover {
-            background-color: #555;
-        }
     </style>
 </head>
 <body>
     <?php include ("../partials/_topnav.php");?>
+    <?php include ("../partials/_sidebar.php");?>
+
     <div class="container">
-        <?php include ("../partials/_sidebar.php");?>
         <div class="main-content">
             <div class="dashboard-container">
                 <?php
@@ -179,18 +151,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3>Submit ID Replacement Form</h3>
                 <form class="compact-form" action="submit_request.php" method="post">
                     <label>Name:</label>
-                    <input type="text" name="name" required><br>
-                    <label>Student ID:</label>
-                    <input type="text" name="student_id" required><br>
+                    <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" readonly><br>
+                    <label>ID:</label>
+                    <input type="text" name="student_id" value="<?php echo htmlspecialchars($student_id); ?>" readonly><br>
                     <label>Reason Lost:</label>
                     <textarea name="lost_reason" required></textarea><br>
                     <label for="faculty">Faculty:</label>
-                    <select name="faculty" id="faculty" required>
-                        <option value="engineering">Engineering</option>
-                        <option value="hrm">HRM</option>
-                        <option value="ict">ICT</option>
-                        <option value="media">Media</option>
-                    </select><br>
+                    <input type="text" name="faculty" value="<?php echo htmlspecialchars($faculty); ?>" readonly><br>
                     <label>Place Lost:</label>
                     <input type="text" name="place_lost" required><br>
                     <button type="submit">Submit</button>
