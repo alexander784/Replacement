@@ -10,6 +10,18 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM id_requests WHERE user_id = $user_id";
 $result = $mysqli->query($sql);
+
+$notification_sql = "SELECT notification FROM id_requests WHERE user_id = $user_id AND notification IS NOT NULL";
+$notification_result = $mysqli->query($notification_sql);
+$notification = "";
+
+if ($notification_result && $notification_result->num_rows > 0) {
+    $row = $notification_result->fetch_assoc();
+    $notification = $row['notification'];
+
+    $clear_sql = "UPDATE id_requests SET notification = NULL WHERE user_id = $user_id";
+    $mysqli->query($clear_sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -85,6 +97,11 @@ $result = $mysqli->query($sql);
             color: red;
         }
     </style>
+    <script>
+        function showNotification(message) {
+            alert(message);
+        }
+    </script>
 </head>
 <body>
     <?php include '../partials/_topnav.php'; ?>
@@ -94,6 +111,14 @@ $result = $mysqli->query($sql);
 
         <div class="main-content">
             <h3>Your Submitted Info</h3>
+
+            <?php if ($notification): ?>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        showNotification("<?php echo $notification; ?>");
+                    });
+                </script>
+            <?php endif; ?>
 
             <?php if ($result && $result->num_rows > 0) : ?>
                 <table>

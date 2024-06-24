@@ -11,15 +11,18 @@ $sql = "SELECT * FROM id_requests";
 $result = $mysqli->query($sql);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST['id'];
+    
+    $notification = "";
+
     if (isset($_POST['approve'])) {
-        $id = $_POST['id'];
-        $update_sql = "UPDATE id_requests SET status = 'Approved' WHERE id = $id";
+        $update_sql = "UPDATE id_requests SET status = 'Approved', notification = 'Your details have been approved. Please come and collect your ID.' WHERE id = $id";
         $mysqli->query($update_sql);
     } elseif (isset($_POST['reject'])) {
-        $id = $_POST['id'];
-        $update_sql = "UPDATE id_requests SET status = 'Rejected' WHERE id = $id";
+        $update_sql = "UPDATE id_requests SET status = 'Rejected', notification = 'Your details have been rejected. Please re-enter your details.' WHERE id = $id";
         $mysqli->query($update_sql);
     }
+
     header("Location: admin_dashboard.php");
     exit();
 }
