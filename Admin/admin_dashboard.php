@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $notification = "";
 
     if (isset($_POST['approve'])) {
-        $update_sql = "UPDATE id_requests SET status = 'Approved', notification = 'Your details have been approved. Please come and collect your ID.' WHERE id = $id";
+        $update_sql = "UPDATE id_requests SET status = 'Approved', notification = 'Your details have been approved. Please come collect your ID.' WHERE id = $id";
         $mysqli->query($update_sql);
     } elseif (isset($_POST['reject'])) {
         $update_sql = "UPDATE id_requests SET status = 'Rejected', notification = 'Your details have been rejected. Please re-enter your details.' WHERE id = $id";
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<?php include 'partials/_topnav.php'; ?>
     <div class="dashboard-container">
+      <?php include './partials/_topnav.php'; ?>
         <h3>ID Replacement Requests</h3>
         <?php if ($result && $result->num_rows > 0) : ?>
             <table>

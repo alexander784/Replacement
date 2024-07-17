@@ -16,7 +16,7 @@
             </div>
             <div class="w-full md:w-1/4 mb-6">
                 <h3 class="text-lg font-bold mb-4">Contact Us</h3>
-                <p class="text-sm">Zetech University, Off Thika Road, Ruiru  <br><br>Email: <a href=" www.zetech.ac.ke" class="text-gray-400 hover:text-white">support@example.com</a></p>
+                <p class="text-sm">Zetech University, Off Thika Road, Ruiru  <br><br>Email: <a href=" www.zetech.ac.ke" class="text-gray-400 hover:text-white">info@zetech.ac.ke</a></p>
                 <p class="text-sm">Phone: <a href="tel:+1234567890" class="text-gray-400 hover:text-white">WhatsApp: 0706622557</a></p>
             </div>
             

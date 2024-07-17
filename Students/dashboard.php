@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,15 +24,16 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <?php include '../partials/_topnav.php'; ?>
-    <div class="flex h-screen">
-        <div class="bg-gray-800 w-64">
+    <div class="flex">
+        <div class="bg-gray-800 w-64 sticky top-0">
             <?php include '../partials/_sidebar.php'; ?>
             <!-- <a href="logout.php" class="logout-button">Logout</a> -->
         </div>
-        <div class="flex-1 bg-gray-200">
+        <div class="container flex justify-center items-center">
             <div class="p-6">
-                <div id="main_content">
-                    Welcome to Student ID Replacement!!
+                <div class="w-full bg-gray-200 p-6 rounded-xl shadow-xl">
+                    <p>Welcome to Student ID Replacement!!</p>
+                    <p>Replacement your Damaged or Lost School ID Hassle-free!!</p>
                 </div>
             </div>
         </div>

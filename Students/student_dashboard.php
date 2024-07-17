@@ -105,12 +105,10 @@ if ($notification_result && $notification_result->num_rows > 0) {
 </head>
 <body>
     <?php include '../partials/_topnav.php'; ?>
-
     <div class="flex">
         <?php include '../partials/_sidebar.php'; ?>
-
-        <div class="main-content">
-            <h3>Your Submitted Info</h3>
+        <div class="">
+            <h3 class="text-center">Your Submitted Info</h3>
 
             <?php if ($notification): ?>
                 <script>

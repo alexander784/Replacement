@@ -7,11 +7,11 @@
     <title>ID Replacement</title>
 </head>
 <body>
-<div class="flex h-screen rounded">
+<div class="flex h-screen rounded stick">
     <div class="bg-gray-800 w-64 flex flex-col justify-between rounded ">
         <div class="py-6 px-4">
             <ul class="mt-6">
-                <li class="mb-2"><a href="#" class="text-gray-300 hover:text-white">Dashboard</a></li>
+                <li class="mb-2"><a href="#" class=" text-gray-300 underline:none hover:text-white">Dashboard</a></li>
                 <li class="mb-2"><a href="student_dashboard.php" class="text-gray-300 hover:text-white">View Info</a></li>
                 <li class="mb-2"><a href="submit_request.php" class="text-gray-300 hover:text-white">Replace ID</a></li>
             </ul>
